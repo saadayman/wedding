@@ -1,26 +1,321 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf7f0;
+  --foreground: #49362d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-arabic-sans);
+  --font-serif: var(--font-arabic-display);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-arabic-sans), Arial, Helvetica, sans-serif;
+}
+
+.invite-ambient {
+  transform-origin: center;
+}
+
+.invite-sparkles::before,
+.invite-sparkles::after {
+  background-image:
+    radial-gradient(circle, rgba(244, 241, 232, 0.48) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(231, 194, 139, 0.35) 0 1px, transparent 1.5px);
+  background-position:
+    0 0,
+    22px 28px;
+  background-size:
+    96px 96px,
+    132px 132px;
+  content: "";
+  inset: -10%;
+  opacity: 0.28;
+  position: absolute;
+}
+
+.invite-sparkles::after {
+  opacity: 0.16;
+}
+
+.invite-shell {
+  animation: shellIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.invite-panel::after {
+  animation: panelSheen 8s ease-in-out infinite;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 44%,
+    rgba(231, 194, 139, 0.16) 50%,
+    rgba(255, 255, 255, 0.08) 56%,
+    transparent 100%
+  );
+  content: "";
+  inset: -45%;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(65%) rotate(9deg);
+}
+
+.invite-glow-line {
+  opacity: 0.64;
+}
+
+.motion-reveal {
+  animation: revealUp 740ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  opacity: 0;
+}
+
+.motion-delay-1 {
+  animation-delay: 90ms;
+}
+
+.motion-delay-2 {
+  animation-delay: 180ms;
+}
+
+.motion-delay-3 {
+  animation-delay: 280ms;
+}
+
+.motion-delay-4 {
+  animation-delay: 400ms;
+}
+
+.motion-delay-5 {
+  animation-delay: 520ms;
+}
+
+.motion-delay-6 {
+  animation-delay: 640ms;
+}
+
+.motion-delay-7 {
+  animation-delay: 760ms;
+}
+
+.invite-names {
+  animation: namesIn 880ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
+  font-family: var(--font-name-display), var(--font-arabic-display), serif;
+  text-shadow: 0 0 24px rgba(231, 194, 139, 0.14);
+}
+
+.name-word {
+  font-size: clamp(2.35rem, 4.5vw, 4.65rem);
+  line-height: 1.32;
+  overflow: visible;
+  padding-block: 0.08em;
+}
+
+.invite-verse {
+  position: relative;
+}
+
+.invite-verse::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(231, 194, 139, 0.45),
+    transparent
+  );
+  content: "";
+  height: 1px;
+  inset: auto 12% -1px;
+  opacity: 0.55;
+  position: absolute;
+}
+
+.countdown-shell {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.075), transparent 44%),
+    rgba(21, 14, 12, 0.42);
+  border: 1px solid rgba(231, 194, 139, 0.22);
+  border-radius: 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 18px 42px rgba(0, 0, 0, 0.14),
+    0 0 30px rgba(231, 194, 139, 0.035);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.countdown-shell::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(231, 194, 139, 0.72),
+    transparent
+  );
+  content: "";
+  height: 1px;
+  inset: 0 10% auto;
+  position: absolute;
+}
+
+.countdown-heading {
+  align-items: center;
+  color: rgba(231, 194, 139, 0.76);
+  display: grid;
+  font-size: 0.66rem;
+  font-weight: 700;
+  gap: 0.65rem;
+  grid-template-columns: minmax(1rem, 1fr) auto minmax(1rem, 1fr);
+  padding: 0.65rem 1rem 0;
+}
+
+.countdown-heading span {
+  background: linear-gradient(90deg, transparent, rgba(231, 194, 139, 0.28));
+  height: 1px;
+}
+
+.countdown-heading span:last-child {
+  background: linear-gradient(90deg, rgba(231, 194, 139, 0.28), transparent);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0.25rem 0.45rem 0.55rem;
+}
+
+.countdown-card {
+  min-width: 0;
+  padding: 0.4rem 0.3rem 0.35rem;
+  position: relative;
+  text-align: center;
+}
+
+.countdown-card:not(:last-child)::after {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(231, 194, 139, 0.28) 24%,
+    rgba(255, 255, 255, 0.08) 76%,
+    transparent
+  );
+  content: "";
+  inset: 12% auto 12% 0;
+  position: absolute;
+  width: 1px;
+}
+
+.countdown-value {
+  color: #fff8ef;
+  font-family: var(--font-arabic-display), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  line-height: 1;
+  position: relative;
+  text-shadow:
+    0 0 18px rgba(231, 194, 139, 0.16),
+    0 2px 16px rgba(0, 0, 0, 0.24);
+}
+
+.countdown-label {
+  color: rgba(231, 194, 139, 0.7);
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-top: 0.35rem;
+}
+
+.motion-button {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.motion-button:hover {
+  transform: translateY(-2px);
+}
+
+.motion-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes shellIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.975);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes panelSheen {
+  0%,
+  45% {
+    opacity: 0;
+    transform: translateX(65%) rotate(9deg);
+  }
+
+  58% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-65%) rotate(9deg);
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes namesIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cardLift {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
 }
