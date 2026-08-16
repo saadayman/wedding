@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { WeddingContent } from "@/lib/wedding-data";
 
@@ -228,14 +227,8 @@ export function WeddingInvitation({ content }: WeddingInvitationProps) {
           <div className="invite-glow-line absolute inset-x-8 top-7 h-px bg-gradient-to-l from-transparent via-[#e7c28b]/70 to-transparent" />
           <div className="invite-glow-line invite-glow-line-slow absolute inset-x-8 bottom-7 h-px bg-gradient-to-l from-transparent via-[#e7c28b]/40 to-transparent" />
 
-          <nav className="motion-reveal motion-delay-1 absolute inset-x-5 top-5 z-20 flex items-center justify-between gap-3 text-xs font-bold text-white/74 sm:inset-x-7 lg:inset-x-9">
-            <Link
-              href="/admin"
-              className="motion-button rounded-full border border-white/14 bg-white/8 px-4 py-2 transition hover:bg-white/14"
-            >
-              تعديل
-            </Link>
-            {content.musicUrl ? (
+          {content.musicUrl ? (
+            <nav className="motion-reveal motion-delay-1 absolute inset-x-5 top-5 z-20 flex items-center justify-end text-xs font-bold text-white/74 sm:inset-x-7 lg:inset-x-9">
               <button
                 type="button"
                 onClick={() => setMusicOn((value) => !value)}
@@ -243,8 +236,8 @@ export function WeddingInvitation({ content }: WeddingInvitationProps) {
               >
                 {musicOn ? "إيقاف الصوت" : "تشغيل الصوت"}
               </button>
-            ) : null}
-          </nav>
+            </nav>
+          ) : null}
 
           <div className="relative z-10 grid flex-1 content-center gap-3 py-14 text-center sm:gap-4">
             <div className="motion-reveal motion-delay-3">
